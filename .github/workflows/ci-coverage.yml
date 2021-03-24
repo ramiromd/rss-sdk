@@ -1,4 +1,4 @@
-name: sdk-actions
+name: CI-coverage
 on: [push]
 jobs:
   testing:
@@ -10,6 +10,9 @@ jobs:
       - name: PHPUnit Tests
         uses: php-actions/phpunit@v2
         with:
+          php_extensions: xdebug
           bootstrap: vendor/autoload.php
           configuration: phpunit.xml
           args: --coverage-text
+        env:
+          XDEBUG_MODE: coverage
